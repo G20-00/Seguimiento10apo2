@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
@@ -13,15 +12,13 @@ public class Main {
 	static int[] torres = new int[3];
 	static Scanner entrada = new Scanner(System.in);
 	static BufferedReader br;
-	// static PrintWriter pw ;
 	static FileOutputStream ou;
 	static String output = "";
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		File f= new File("data/outputExcel.csv");
-		br = new BufferedReader(new FileReader("data/hola.txt"));
-		// pw = new PrintWriter("C:\\Users\\Pc\\Desktop\\ejemplo\\outputExcel.csv");
+		br = new BufferedReader(new FileReader("data/input.txt"));
 		ou = new FileOutputStream(f);
 		int n = Integer.parseInt(br.readLine());
 		int cont = 1;
@@ -40,7 +37,6 @@ public class Main {
 			cont++;
 			repit(j, cont);
 		} else {
-			// pw.println(output);
 			ou.close();
 		}
 	}
@@ -54,22 +50,18 @@ public class Main {
 					output += (torres[0] + " " + torres[1] + " " + torres[2] + "\n");
 					auxiliar = torres[0] + " " + torres[1] + " " + torres[2] + "\n";
 					ou.write(auxiliar.getBytes());
-					// pw.println(torres[0]+ " " + torres[1] + " "+torres[2]);
 					cont2++;
 				} else {
 					System.out.println("\n" + torres[0] + " " + torres[1] + " " + torres[2]);
 					output += "\n" + torres[0] + " " + torres[1] + " " + torres[2] + "\n";
 					auxiliar = "\n" + torres[0] + " " + torres[1] + " " + torres[2] + "\n";
 					ou.write(auxiliar.getBytes());
-					// pw.println("\n"+torres[0]+ " " + torres[1] + " "+torres[2]);
 				}
 			}
 			torresHanoi(n - 1, o, aux, d, ++cont, cont2);
 
 			torres[o - 1]--;
 			torres[d - 1]++;
-
-			// pw.println(torres[0]+ " " + torres[1] + " "+torres[2]);
 			System.out.println(torres[0] + " " + torres[1] + " " + torres[2]);
 			output += torres[0] + " " + torres[1] + " " + torres[2] + "\n";
 			auxiliar = torres[0] + " " + torres[1] + " " + torres[2] + "\n";
