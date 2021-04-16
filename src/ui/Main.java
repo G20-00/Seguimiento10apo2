@@ -14,16 +14,40 @@ public class Main {
 	static BufferedReader br;
 	static FileOutputStream ou;
 	static String output = "";
+	private static Scanner numScan = new Scanner(System.in);
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		
-		File f= new File("data/outputExcel.csv");
-		br = new BufferedReader(new FileReader("data/input.txt"));
-		ou = new FileOutputStream(f);
-		int n = Integer.parseInt(br.readLine());
-		int cont = 1;
+		boolean run = true;
+		int cont=0;
+		int n =0;
+		while (run) {
+			System.out.println("**************************************************\n" + "1.Ejercicio del seguimiento \n"
+					+ "2. Ejercicio del archivo\n" + "3. Salir\n"+"**************************************************\n");
+			int eleccion = numScan.nextInt();
 
-		repit(n, cont);
+			switch (eleccion) {
+			case 1:
+				File r = new File("data/outputExcelSeg.csv");
+				br = new BufferedReader(new FileReader("data/inputSeg.txt"));
+				ou = new FileOutputStream(r);
+				 n = Integer.parseInt(br.readLine());
+				 cont = 1;
+				repit(n, cont);
+				break;
+			case 2:
+				File f = new File("data/outputExcel.csv");
+				br = new BufferedReader(new FileReader("data/input.txt"));
+				ou = new FileOutputStream(f);
+				 n = Integer.parseInt(br.readLine());
+				 cont = 1;
+				repit(n, cont);
+				break;
+			case 3:
+					run = false;
+					System.out.println("Bye Bye");
+				break;
+			}
+		}
 
 	}
 
